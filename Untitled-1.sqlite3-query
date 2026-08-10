@@ -1,0 +1,35 @@
+-- database: ./database.db
+
+SELECT * FROM Cars
+ORDER BY `CarID` ASC;
+INSERT INTO Cars (Model, TopSpeed, Cost, Description) VALUES("C-300", 130, 49650,"A sleek executive sedan featuring a 255-hp mild-hybrid engine, a 11.9-inch touchscreen, and S-Class inspired tech. It’s luxury refined for the modern era.");
+INSERT INTO Cars (Model, TopSpeed, Cost, Description) VALUES("S-580", 130, 120900,"The pinnacle of luxury sedans, featuring a 496-hp V8, executive rear seating, and a serene cabin that defines world-class comfort and prestige.");
+INSERT INTO Cars (Model, TopSpeed, Cost, Description) VALUES("G-550", 183, 155250,"An off-road legend updated with a new inline-6 mild-hybrid engine, three locking differentials, and a ruggedly iconic boxy design.");
+INSERT INTO Cars (Model, TopSpeed, Cost, Description) VALUEs("330i Sedan", 155, 48850,"The benchmark for sport sedans, offering a 255-hp turbocharged engine, agile handling, and a refined interior featuring the curved iDrive display.");
+INSERT INTO Cars (Model, TopSpeed, Cost, Description) VALUES("X5 xDrive40i", 130, 70200,"A versatile luxury SUV blending a 375-hp mild-hybrid inline-6 with a premium cabin, advanced safety tech, and impressive 7,200-lb towing capacity.");
+INSERT INTO Cars (Model, TopSpeed, Cost, Description) VALUES("M5 Hybrid", 155, 126850,"A high-performance plug-in hybrid monster delivering 717 hp. It combines elite supercar speed with the everyday practicality of a luxury sedan.");
+INSERT INTO Cars (Model, TopSpeed, Cost, Description) VALUES("A4", 130, 43295,"The Audi A4 blends sophisticated tech with a refined interior. It offers a balanced, smooth ride, featuring a minimalist digital cockpit and premium finishes.");
+INSERT INTO Cars (Model, TopSpeed, Cost, Description) VALUES("A6", 130, 64100,"The A6 offers a superior blend of tech and performance, featuring a standard V6 engine, a massive curved digital display, and a quiet, airy cabin.");
+INSERT INTO Cars (Model, TopSpeed, Cost, Description) VALUES("Q5", 130, 52800,"As Audi's best-selling SUV, the Q5 delivers a smooth, composed ride with a versatile interior, high-end materials, and standard all-wheel drive.");
+
+
+-- All cars
+SELECT * FROM Cars;
+-- all cars and the maker
+SELECT Makers.Name,Cars.Model FROM Cars
+JOIN Makers ON Makers.MakerID = Cars.MakerID;
+
+--Cars of one make
+SELECT Cars.Model FROM Cars
+JOIN Makers ON Makers.MakerID = Cars.MakerID
+WHERE Makers.Name = "Benz";
+
+--just id, model, maker and imageurl
+SELECT Cars.CarID,Makers.Name,Cars.Model,Cars.ImageURL 
+FROM Cars
+JOIN Makers ON Makers.MakerID = Cars.MakerID;
+
+--just one car based on the id
+SELECT * FROM Cars
+JOIN Makers ON Makers.MakerID = Cars.MakerID
+WHERE Cars.CarID = 2;
