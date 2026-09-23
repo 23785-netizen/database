@@ -27,9 +27,11 @@ def close_connection(exception):
 
 # query the database
 def query_db(query, args=(), one=False):
+    # execute the query and fetch the results
     cur = get_db().execute(query, args)
     rv = cur.fetchall()
     cur.close()
+    # return the results, either as a single row or a list of rows
     return (rv[0] if rv else None) if one else rv
 
 
@@ -53,6 +55,7 @@ def car(id):
     WHERE Car.CarID = ?;"""
     # query the database for the specific car
     result = query_db(sql, (id,), True)
+    # if the car is not found, return a 404 error
     return render_template("car.html", car=result)
 
 
